@@ -15,6 +15,10 @@ sudo systemctl status apache2
 echo
 echo
 sudo apt install awscli
+echo "Archiving logs to temp""
 sudo tar -cvf /tmp/amala-httpd-logs-$(date '+%d%m%Y-%H%M%S').tar /var/log/apache2
+echo "Moving logs to S3"
 aws s3 cp /tmp/amala-httpd-logs-$(date '+%d%m%Y-%H%M%S').tar s3://upgrad-amala/
+echo "Logs in S3"
+exec cat /etc/cron.d/automation
 echo "completed"
